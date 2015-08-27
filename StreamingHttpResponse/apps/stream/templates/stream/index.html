@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+    <script>
+        xmlhttp = new XMLHttpRequest();
+        function log(msg) {
+            console.log(msg);
+        }
+        function reqListener () {
+            log('our js register');
+        }
+
+        function updateProgress (oEvent) {
+            log('inside progress');
+            event1 = oEvent;
+            log(oEvent);
+            log(oEvent.target.responseText.split('\n\n'));
+            log(oEvent.currentTarget.responseText.length);
+            log(oEvent.target.responseText.length);
+            if (oEvent.lengthComputable) {
+                var percentComplete = oEvent.loaded / oEvent.total;
+
+              } else {
+                // Unable to compute progress information since the total size is unknown
+            }
+        }
+        url = '{% url "test_stream" %}';
+
+        xmlhttp.addEventListener('load', reqListener);
+        xmlhttp.addEventListener('progress', updateProgress, false);
+        xmlhttp.open("get", url, true);
+        xmlhttp.send();
+
+    </script>
+<body>
+    <h1>Streaming</h1>
+    <p>Please, check console info</p>
+</body>
+</html>
