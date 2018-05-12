@@ -5,7 +5,7 @@
     <title></title>
 </head>
     <script>
-        xmlhttp = new XMLHttpRequest();
+        let xmlhttp = new XMLHttpRequest();
         function log(msg) {
             console.log(msg);
         }
@@ -15,17 +15,18 @@
 
         function updateProgress (oEvent) {
             log('inside progress');
-            event1 = oEvent;
             log(oEvent);
-            log(oEvent.target.responseText.split('\n\n'));
             log(oEvent.currentTarget.responseText.length);
-            log(oEvent.target.responseText.length);
             if (oEvent.lengthComputable) {
-                var percentComplete = oEvent.loaded / oEvent.total;
-
+                let percentComplete = (oEvent.loaded / oEvent.total) * 100;
+                document.getElementById('progress').innerText = percentComplete + ' %'
               } else {
                 // Unable to compute progress information since the total size is unknown
             }
+            let p = document.createElement('p');
+            let text = document.createTextNode('start new chunck: ' +  oEvent.target.responseText);
+            p.appendChild(text);
+            document.getElementById('data').appendChild(p);
         }
         url = '{% url "test_stream" %}';
 
@@ -37,6 +38,10 @@
     </script>
 <body>
     <h1>Streaming</h1>
-    <p>Please, check console info</p>
+    <p>We are going to be pulling data from {% url "test_stream" %} until finished</p>
+    <p>You can look for 'start new chunck:' so you can see that data comes in several chunks</p>
+    <div id="progress"></div>
+    <div id="data"></div>
+    <p>Please, check browser console info for more info</p>
 </body>
 </html>

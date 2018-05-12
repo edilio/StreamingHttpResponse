@@ -3,11 +3,11 @@ from django.shortcuts import render
 
 
 def gen_message(msg):
-    return 'data: {}\n\n'.format(msg)
+    return 'data: {}'.format(msg)
 
 
 def iterator():
-    for i in range(1000):
+    for i in range(10000):
         yield gen_message('iteration ' + str(i))
 
 
