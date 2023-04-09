@@ -24,7 +24,7 @@
                 // Unable to compute progress information since the total size is unknown
             }
             let p = document.createElement('p');
-            let text = document.createTextNode('start new chunck: ' +  oEvent.target.responseText);
+            let text = document.createTextNode('start new chunk: ' +  oEvent.target.responseText);
             p.appendChild(text);
             document.getElementById('data').appendChild(p);
         }
@@ -39,7 +39,7 @@
 <body>
     <h1>Streaming</h1>
     <p>We are going to be pulling data from {% url "test_stream" %} until finished</p>
-    <p>You can look for 'start new chunck:' so you can see that data comes in several chunks</p>
+    <p>You can look for 'start new chunk:' so you can see that data comes in several chunks</p>
     <div id="progress"></div>
     <div id="data"></div>
     <p>Please, check browser console info for more info</p>

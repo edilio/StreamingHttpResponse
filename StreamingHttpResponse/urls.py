@@ -13,12 +13,12 @@ Including another URLconf
     1. Add an import:  from blog import urls as blog_urls
     2. Add a URL to urlpatterns:  url(r'^blog/', include(blog_urls))
 """
-from django.conf.urls import include, url
+from django.urls import path
 from django.contrib import admin
 from StreamingHttpResponse.apps.stream import views
 
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
-    url(r'^$', views.home, name='home'),
-    url(r'^stream$', views.test_stream, name='test_stream')
+    path('admin/', admin.site.urls),
+    path('stream', views.test_stream, name='test_stream'),
+    path('', views.home, name='home'),
 ]

@@ -3,12 +3,12 @@ from django.shortcuts import render
 
 
 def gen_message(msg):
-    return 'data: {}'.format(msg)
+    return f'data: {msg} '
 
 
 def iterator():
-    for i in range(10000):
-        yield gen_message('iteration ' + str(i))
+    for i in range(100000):
+        yield gen_message(f'iteration {i}')
 
 
 def test_stream(request):
